@@ -12,18 +12,13 @@ function App() {
     setHasStarted(true)
   }
 
-  const selectCategory = (event) => {
-    const {value} = event.target
-    setCategory(value)
-  }
-
   const goStartScreen = () => {
     setHasStarted(false)
   }
 
   return (
     <div className="App">
-      {hasStarted ? <Game category={category} goStartScreen={goStartScreen}/> : <StartScreen startGame={startGame} category={category} selectCategory={selectCategory}/>}
+      {hasStarted ? <Game category={category} goStartScreen={goStartScreen}/> : <StartScreen startGame={startGame}/>}
     </div>
   )
 }

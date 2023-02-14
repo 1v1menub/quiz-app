@@ -2,41 +2,27 @@ import { useState, useEffect } from 'react'
 import { decode } from "html-entities"
 import Question from './Question'
 import Confetti from 'react-confetti'
+import questionsraw from "../questionsgrecia"
 import useWindowDimensions from '../windowadjust'
 
 
-
-const Game = ({category, goStartScreen, hasStarted}) => {
+const Game = ({goStartScreen, hasStarted}) => {
 
     const [questions, setQuestions] = useState([])
     const [checked, setChecked] = useState(false)
 
     const {height, width} = useWindowDimensions()
-
-    const fetchQuestions = async () => {
-        const response = await fetch(`https://opentdb.com/api.php?amount=5&${category}type=multiple`)
-        if (!response.ok) {
-            throw new Error('Data coud not be fetched!')
-        } else {
-            return response.json()
-        }
-    }
     
     const newGame = () => {
         setChecked(false)
         setQuestions([])
-        fetchQuestions()
-        .then((res) => {
-            const arr = res.results.map((obj, index) =>{
-                return {...obj, correct_answer: decode(obj.correct_answer), index:index, selected: "", answers: [...obj.incorrect_answers, obj.correct_answer].sort(() => Math.random() - 0.5).map((item) => {
-                    return decode(item)
-                })}
-            })
-            setQuestions(arr)
+        const arr = questionsraw.results.map((obj, index) =>{
+            console.log(index)
+            return {...obj, correct_answer: obj.correct_answer, index:index, selected: "", answers: [...obj.incorrect_answers, obj.correct_answer].sort(() => Math.random() - 0.5).map((item) => {
+                return item
+            })}
         })
-        .catch((e) => {
-            console.log(e.message)
-        })
+        setQuestions(arr) 
     }
 
     useEffect(() => {

@@ -1,5 +1,7 @@
+
 * {
   font-family: "Open Sans";
+  box-sizing: border-box;
 }
 
 body {
@@ -10,16 +12,18 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  padding: 3rem;
+  min-height: 100vh;
   background-color: #F5F7FB;
 }
 
 .nogamecont {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  align-items: center;
+  justify-content: center;
   color: #293264;
-  text-align: center;
+  height: 100%;
 }
 
 .starttitle {
@@ -31,13 +35,51 @@ body {
   font-size: 24px;
   margin-top: 30px;
   margin-bottom: 0px;
+  color: #fb3310;
 }
 
 .ignacio {
   font-size: 24px;
   margin-top: 20px;
   color:#293264;
-  margin-bottom: 40px;
+  margin-bottom: 0px;
+}
+
+.grecia {
+  font-size: 24px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  color: #293264;
+}
+
+.startbutton {
+  height: 50px;
+  width: 200px;
+  color: white;
+  font-size: 18px;
+  background-color: #4D5B9E;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .starttitle {
+    font-size: 50px;
+    box-sizing: border-box;
+  }
+
+  .starttext {
+    font-size: 18px;
+  }
+
+  .ignacio {
+    font-size: 18px;
+  }
+
+  .grecia {
+    font-size: 18px;
+  }
 }
 
 .selectbutton {
@@ -53,19 +95,6 @@ body {
   width: calc(100% - 200px + 30px);
   border-radius: 1vh;
   text-indent: 10px;
-  cursor: pointer;
-}
-
-.startbutton {
-  margin-left: auto;
-  margin-right: auto;
-  height: 50px;
-  width: 200px;
-  color: white;
-  font-size: 18px;
-  background-color: #4D5B9E;
-  border: none;
-  border-radius: 1vh;
   cursor: pointer;
 }
 
