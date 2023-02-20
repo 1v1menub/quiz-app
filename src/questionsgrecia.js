@@ -57,6 +57,30 @@ const questionsraw = {
             correct_msg: "JAJAAJAJAJAJAJ jajaja ja ja... enserio",
             incorrect_msg: "El día que nos casemos",  
             emoji: "🤐"
+        },
+        {
+            correct_answer: "Todas",
+            incorrect_answers: ["Peligrosa", "Hermosa", "Inteligente"],
+            question: "¿Que palabra te describe?",
+            correct_msg: "Claro que si bb",
+            incorrect_msg: "Te subestimas",  
+            emoji: "🤤"
+        },
+        {
+            correct_answer: "10/10",
+            incorrect_answers: ["7/10", "9/10", "8/10"],
+            question: "¿Qué tan bien crees que la pase el sábado contigo?",
+            correct_msg: "inf/10",
+            incorrect_msg: "Soy un exagerado, no te creas todo lo que digo.",  
+            emoji: "💯"
+        },
+        {
+            correct_answer: "Grecia",
+            incorrect_answers: ["Hamburguesa", "Makis", "Nuggets"],
+            question: "¿Cuál es mi comida favorita?",
+            correct_msg: "<3",
+            incorrect_msg: "Tambien.",  
+            emoji: "💦"
         }
     ]
 }
