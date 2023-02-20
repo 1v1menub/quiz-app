@@ -14,7 +14,6 @@ const Game = ({goStartScreen, hasStarted}) => {
     const {height, width} = useWindowDimensions()
     
     const newGame = () => {
-        toast.dismiss()
         const shuffledquestions = questionsraw.results.sort(() => Math.random() - 0.5)
         setChecked(questionsraw.results.map((q) => {return false}))
         setQuestions([])
@@ -25,6 +24,12 @@ const Game = ({goStartScreen, hasStarted}) => {
         })
         setQuestions(arr) 
     }
+
+    const resetGame = () => {
+        toast.dismiss()
+        newGame()
+    }
+
 
     useEffect(() => {
         newGame()
@@ -80,7 +85,7 @@ const Game = ({goStartScreen, hasStarted}) => {
                 {questionElems} 
                 <div className='scorecont'>
                     {checked.every((spot) => {return spot ? true : false}) && <span className='scoretext' >Conseguiste {calcScore()} / {questions.length} respuestas correctas, {calcScore() === questions.length ? "puntaje que refleja tu belleza 😘" : "pero tú siempre serás un 10 😘"}</span>}
-                    {checked.every((spot) => {return spot ? true : false}) && <button className='scorebutton' onClick={newGame}>Intenta nuevamente</button>}
+                    {checked.every((spot) => {return spot ? true : false}) && <button className='scorebutton' onClick={resetGame}>Intenta nuevamente</button>}
                     {(checked.every((spot) => {return spot ? true : false}) && calcScore() === questions.length) && <a  className='form-anchor' href='https://forms.gle/jzLZch28rWizEbKAA'><button className='scorebutton2'>Seguir</button></a>}
                 </div>
             </> 
