@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react'
-import { decode } from "html-entities"
 import Question from './Question'
 import Confetti from 'react-confetti'
 import questionsraw from "../questionsgrecia"
 import useWindowDimensions from '../windowadjust'
+import toast from "react-hot-toast"
 
 
 const Game = ({goStartScreen, hasStarted}) => {
 
     const [questions, setQuestions] = useState([])
-    const [checked, setChecked] = useState(false)
+    const [checked, setChecked] = useState(questionsraw.results.map((q) => false))
 
     const {height, width} = useWindowDimensions()
     
     const newGame = () => {
-        setChecked(false)
+        const shuffledquestions = questionsraw.results.sort(() => Math.random() - 0.5)
+        setChecked(questionsraw.results.map((q) => {return false}))
         setQuestions([])
-        const arr = questionsraw.results.map((obj, index) =>{
-            console.log(index)
+        const arr = shuffledquestions.map((obj, index) =>{
             return {...obj, correct_answer: obj.correct_answer, index:index, selected: "", answers: [...obj.incorrect_answers, obj.correct_answer].sort(() => Math.random() - 0.5).map((item) => {
                 return item
             })}
@@ -30,18 +30,31 @@ const Game = ({goStartScreen, hasStarted}) => {
     }, [hasStarted])
 
     const selectAnswer = (index, ans) => {
-        if(checked) {
+        if(checked[index]) {
             return
         }
+        toast.dismiss()
         setQuestions((prev) => {
             return prev.map((q) => {
                 return q.index === index ? {...q, selected: ans}: q
             })
         })
-    }
-
-    const checkAnswers = () => {
-        setChecked(true)
+        setChecked((prev) => {
+            return prev.map((spot, spotindex) => {
+                return (spotindex === index || spot === true) ? true : false
+            })
+        })
+        if(ans === questions[index].correct_answer) {
+            toast(questions[index].correct_msg, {
+                icon: questions[index].emoji,
+                duration: 7000
+            })
+        }
+        else {
+            toast.error(questions[index].incorrect_msg, {
+                duration: 7000
+            })
+        }
     }
 
     const calcScore = () => {
@@ -55,19 +68,19 @@ const Game = ({goStartScreen, hasStarted}) => {
     }
     
     const questionElems = questions.map((q) => {
-        return <Question key={q.index} checked={checked} {...q} selectAnswer={selectAnswer}/>
+        return <Question key={q.index} checked={checked[q.index]} {...q} selectAnswer={selectAnswer}/>
     })
 
     return (
         <div className="gamecont"> 
             {questions.length > 0 ? 
             <>
-                {calcScore() === 5 && checked && <Confetti height={height} width={width}/>}
+                {calcScore() === questions.length && <Confetti height={height} width={width-30}/>}
                 {questionElems} 
                 <div className='scorecont'>
-                    {checked && <span className='scoretext' >You scored {calcScore()} / {questions.length} correct answers</span>}
-                    <button className='scorebutton' onClick={checked ? newGame : checkAnswers}>{checked ? "Play again" :"Check answers"}</button>
-                    {checked && <button className='scorebutton' onClick={goStartScreen}>{"Change category"}</button>}
+                    {checked.every((spot) => {return spot ? true : false}) && <span className='scoretext' >Conseguiste {calcScore()} / {questions.length} respuestas correctas, {calcScore() === questions.length ? "puntaje que refleja tu belleza 😘" : "pero tú siempre serás un 10 😘"}</span>}
+                    {checked.every((spot) => {return spot ? true : false}) && <button className='scorebutton' onClick={newGame}>Intenta nuevamente</button>}
+                    {(checked.every((spot) => {return spot ? true : false}) && calcScore() === questions.length) && <a  className='form-anchor' href='https://forms.gle/jzLZch28rWizEbKAA'><button className='scorebutton2'>Seguir</button></a>}
                 </div>
             </> 
             : 

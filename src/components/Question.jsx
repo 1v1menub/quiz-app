@@ -5,8 +5,8 @@ import Answer from "./Answer"
 const Question = ({ index, difficulty, question, correct_answer, incorrect_answers, answers, selected, selectAnswer, checked}) => {
 
 
-    const answersElem = answers.map((ans) => {
-        return <Answer key={ans} checked={checked} correct_answer={correct_answer} index={index} isSelected={selected === ans ? true : false} text={ans} selectAnswer={selectAnswer} />
+    const answersElem = answers.map((ans, i) => {
+        return <Answer key={i} checked={checked} correct_answer={correct_answer} index={index} isSelected={selected === ans ? true : false} text={ans} selectAnswer={selectAnswer} />
     })
     
     return (

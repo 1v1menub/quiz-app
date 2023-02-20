@@ -16,14 +16,6 @@ const Answer = ({index, isSelected, text, selectAnswer, correct_answer, checked}
                 return "#D6DBF5"
             }
         }
-        else {
-            if(checked && text === correct_answer) {
-                return "#94D7A2"
-            }
-            else {
-                return "#F5F7FB"
-            }
-        }
     }
 
     return (
