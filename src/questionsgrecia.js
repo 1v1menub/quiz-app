@@ -51,12 +51,11 @@ const questionsraw = {
             emoji: "🍰"
         },
         {
-            correct_answer: "0",
-            incorrect_answers: ["0", "0", "Amigos y familia"],
-            question: "¿A cuántas personas le deberías mostrar esto?",
-            correct_msg: "JAJAAJAJAJAJAJ jajaja ja ja... enserio",
-            incorrect_msg: "El día que nos casemos",  
-            emoji: "🤐"
+            correct_answer: "2",
+            incorrect_answers: ["1", "5", "3"],
+            question: "¿Cuántos hermanos tengo?",
+            correct_msg: "Tan bello y peligroso como tú.",
+            incorrect_msg: "Au, si no te acordaste de esta, te deseo mucha suerte."
         }
 
     ]
