@@ -14,6 +14,7 @@ const Game = ({goStartScreen, hasStarted}) => {
     const {height, width} = useWindowDimensions()
     
     const newGame = () => {
+        toast.dismiss()
         const shuffledquestions = questionsraw.results.sort(() => Math.random() - 0.5)
         setChecked(questionsraw.results.map((q) => {return false}))
         setQuestions([])

@@ -214,6 +214,11 @@ body {
     margin-bottom: 20px;
   }
 
+  .riddleriddle {
+    font-size: 1.75rem;
+  }
+  
+
   .answer {
     width: calc(50% - 10px);
     margin-bottom: 10px;
@@ -231,6 +236,10 @@ body {
   .scorebutton {
     width: 100%;
     margin-right: 0px;
+  }
+
+  .riddleriddle {
+    font-size: 1.3rem;
   }
 
   .form-anchor {
